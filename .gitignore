@@ -1,0 +1,5 @@
+# Download cache and full exports: regenerate with scripts/build_data.py
+cache/
+exports/
+__pycache__/
+.vercel

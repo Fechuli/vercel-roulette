@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vercel Roulette</title>
+<meta name="description" content="Apri a caso uno dei siti pubblicati su vercel.app, o cercali per nome.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<link rel="preload" href="/data/sites.json" as="fetch" crossorigin>
+<script src="/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <h1>Vercel Roulette</h1>
+  <p class="sub"><span id="total">Centinaia di migliaia di</span> siti *.vercel.app raccolti dal web graph di Common Crawl<span id="range"></span>. Premi <kbd>R</kbd> per un sito a caso.</p>
+
+  <div class="bar">
+    <input id="q" type="search" placeholder="Cerca nel nome: portfolio, 3d, game, shop…" aria-label="Cerca nel nome" autocomplete="off" spellcheck="false" disabled>
+    <button id="rnd" disabled>Sito a caso ↗</button>
+  </div>
+  <div class="opts">
+    <label>Visto l'ultima volta da <select id="since" disabled></select></label>
+  </div>
+
+  <div class="cols">
+    <section>
+      <p class="count" id="count">Carico l'elenco…</p>
+      <ul id="list"></ul>
+      <button class="more" id="more" hidden>Mostra altri</button>
+    </section>
+    <aside id="recent" hidden>
+      <h2>Aperti di recente</h2>
+      <ul id="hist"></ul>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Ogni sito è di chi l'ha pubblicato e può essere offline. Su vercel.app girano anche pagine di phishing: le più evidenti sono escluse, ma non inserire mai credenziali e non scaricare file.</p>
+    <p>Dati: <a href="https://commoncrawl.org/web-graphs" rel="noopener">Common Crawl web graph</a><span id="generated"></span>. Progetto indipendente, non affiliato a Vercel.</p>
+  </footer>
+</main>
+</body>
+</html>
