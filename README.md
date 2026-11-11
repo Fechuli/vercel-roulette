@@ -40,12 +40,13 @@ Con `--refresh` riscarica tutto: ci vuole circa un minuto.
 ## Togliere i siti morti
 
 ```
-python -I scripts/check_alive.py           # una richiesta HEAD per sito, 40 al secondo
-python -I scripts/check_alive.py --retry   # ricontrolla timeout, 429 e 5xx
+python -I scripts/check_alive.py   # una richiesta HEAD per sito, 5 al secondo
 python -I scripts/build_data.py
 ```
 
-Il primo giro su tutta la lista dura circa due ore. Lo script si può interrompere e riprendere, e dopo controlla solo i siti nuovi. Timeout ed errori del server non finiscono in blacklist: si ricontrollano con `--retry`.
+Va piano di proposito. A 33 richieste al secondo la protezione anti-bot di Vercel blocca lo script dopo circa 1.500 siti. Il blocco riguarda il client Python, e il browser continua a funzionare. A 5 al secondo il primo giro su tutta la lista dura circa 15 ore, partendo dai siti visti più di recente. Se Vercel rifiuta comunque le connessioni, lo script si ferma 15 minuti e riparte. Se il blocco arriva dopo che aveva ripreso a lavorare, riparte anche a metà velocità.
+
+Lo script si può interrompere e riprendere. Timeout, 429 ed errori del server non finiscono in blacklist: il giro successivo li riprova.
 
 ## In locale
 
